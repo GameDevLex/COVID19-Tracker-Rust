@@ -1,17 +1,36 @@
 import { Button, VerticalBox } from "std-widgets.slint";
 
 export component AppWindow inherits Window {
-    in-out property <int> counter: 42;
-    callback request-increase-value();
+    width: 200px;
+    height: 200px;
+    in-out property <int> total_cases_counter: 0;
+    in-out property <int> total_deaths_counter: 0;
+    in-out property <int> today_cases_counter: 0;
+    in-out property <int> today_deaths_counter: 0;
+    in-out property <int> today_recovered_counter: 0;
+
+    callback request-get-details();
     VerticalBox {
         Text {
-            text: "Counter: \{root.counter}";
+            text: "Total Cases: \{root.total_cases_counter}";
+        }
+        Text {
+            text: "Total Deaths: \{root.total_deaths_counter}";
+        }
+        Text {
+            text: "Today Cases: \{root.today_cases_counter}";
+        }
+        Text {
+            text: "Today Deaths: \{root.today_deaths_counter}";
+        }
+        Text {
+            text: "Today Recovered: \{root.today_recovered_counter}";
         }
 
         Button {
-            text: "Increase value";
+            text: "Get Details";
             clicked => {
-                root.request-increase-value();
+                root.request-get-details();
             }
         }
     }
